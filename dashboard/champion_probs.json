@@ -1,0 +1,242 @@
+{
+  "Mexico": {
+    "campeon": 1.72,
+    "final": 4.23,
+    "semifinales": 9.86
+  },
+  "Korea Republic": {
+    "campeon": 1.34,
+    "final": 3.44,
+    "semifinales": 8.31
+  },
+  "South Africa": {
+    "campeon": 0.1,
+    "final": 0.37,
+    "semifinales": 1.29
+  },
+  "Czechia": {
+    "campeon": 0.52,
+    "final": 1.55,
+    "semifinales": 4.34
+  },
+  "Canada": {
+    "campeon": 0.55,
+    "final": 1.57,
+    "semifinales": 4.41
+  },
+  "Switzerland": {
+    "campeon": 2.53,
+    "final": 5.73,
+    "semifinales": 12.17
+  },
+  "Qatar": {
+    "campeon": 0.33,
+    "final": 1.1,
+    "semifinales": 3.55
+  },
+  "Bosnia and Herzegovina": {
+    "campeon": 0.1,
+    "final": 0.36,
+    "semifinales": 1.29
+  },
+  "Brazil": {
+    "campeon": 8.69,
+    "final": 14.65,
+    "semifinales": 24.1
+  },
+  "Morocco": {
+    "campeon": 3.39,
+    "final": 7.12,
+    "semifinales": 14.25
+  },
+  "Scotland": {
+    "campeon": 0.94,
+    "final": 2.41,
+    "semifinales": 5.95
+  },
+  "Haiti": {
+    "campeon": 0.02,
+    "final": 0.12,
+    "semifinales": 0.44
+  },
+  "USA": {
+    "campeon": 1.57,
+    "final": 4.05,
+    "semifinales": 9.47
+  },
+  "Australia": {
+    "campeon": 0.62,
+    "final": 1.81,
+    "semifinales": 5.17
+  },
+  "Paraguay": {
+    "campeon": 0.23,
+    "final": 0.78,
+    "semifinales": 2.35
+  },
+  "Turkey": {
+    "campeon": 0.83,
+    "final": 2.15,
+    "semifinales": 5.45
+  },
+  "Germany": {
+    "campeon": 3.81,
+    "final": 7.91,
+    "semifinales": 15.73
+  },
+  "Ecuador": {
+    "campeon": 1.22,
+    "final": 3.23,
+    "semifinales": 7.91
+  },
+  "C\u00f4te d'Ivoire": {
+    "campeon": 0.98,
+    "final": 2.62,
+    "semifinales": 6.54
+  },
+  "Cura\u00e7ao": {
+    "campeon": 0.0,
+    "final": 0.01,
+    "semifinales": 0.06
+  },
+  "Netherlands": {
+    "campeon": 3.06,
+    "final": 6.61,
+    "semifinales": 13.35
+  },
+  "Japan": {
+    "campeon": 2.08,
+    "final": 4.76,
+    "semifinales": 10.27
+  },
+  "Tunisia": {
+    "campeon": 0.32,
+    "final": 0.92,
+    "semifinales": 2.67
+  },
+  "Sweden": {
+    "campeon": 1.1,
+    "final": 2.69,
+    "semifinales": 6.45
+  },
+  "Belgium": {
+    "campeon": 7.31,
+    "final": 12.98,
+    "semifinales": 22.26
+  },
+  "IR Iran": {
+    "campeon": 0.69,
+    "final": 2.05,
+    "semifinales": 5.69
+  },
+  "Egypt": {
+    "campeon": 0.73,
+    "final": 2.04,
+    "semifinales": 5.4
+  },
+  "New Zealand": {
+    "campeon": 0.01,
+    "final": 0.06,
+    "semifinales": 0.31
+  },
+  "Spain": {
+    "campeon": 6.94,
+    "final": 12.49,
+    "semifinales": 21.92
+  },
+  "Saudi Arabia": {
+    "campeon": 0.26,
+    "final": 0.86,
+    "semifinales": 2.84
+  },
+  "Uruguay": {
+    "campeon": 3.04,
+    "final": 6.44,
+    "semifinales": 13.35
+  },
+  "Cape Verde": {
+    "campeon": 0.01,
+    "final": 0.06,
+    "semifinales": 0.22
+  },
+  "France": {
+    "campeon": 10.57,
+    "final": 17.13,
+    "semifinales": 26.81
+  },
+  "Senegal": {
+    "campeon": 1.68,
+    "final": 3.86,
+    "semifinales": 8.63
+  },
+  "Iraq": {
+    "campeon": 0.07,
+    "final": 0.26,
+    "semifinales": 0.92
+  },
+  "Norway": {
+    "campeon": 0.79,
+    "final": 2.02,
+    "semifinales": 5.16
+  },
+  "Argentina": {
+    "campeon": 9.7,
+    "final": 15.65,
+    "semifinales": 25.19
+  },
+  "Algeria": {
+    "campeon": 0.53,
+    "final": 1.48,
+    "semifinales": 3.94
+  },
+  "Austria": {
+    "campeon": 1.29,
+    "final": 3.2,
+    "semifinales": 7.55
+  },
+  "Jordan": {
+    "campeon": 0.1,
+    "final": 0.32,
+    "semifinales": 1.02
+  },
+  "Portugal": {
+    "campeon": 6.09,
+    "final": 11.26,
+    "semifinales": 19.84
+  },
+  "Congo DR": {
+    "campeon": 0.21,
+    "final": 0.67,
+    "semifinales": 2.01
+  },
+  "Uzbekistan": {
+    "campeon": 0.11,
+    "final": 0.37,
+    "semifinales": 1.18
+  },
+  "Colombia": {
+    "campeon": 2.18,
+    "final": 4.92,
+    "semifinales": 10.42
+  },
+  "England": {
+    "campeon": 7.88,
+    "final": 13.63,
+    "semifinales": 22.85
+  },
+  "Croatia": {
+    "campeon": 3.39,
+    "final": 6.92,
+    "semifinales": 13.61
+  },
+  "Ghana": {
+    "campeon": 0.12,
+    "final": 0.4,
+    "semifinales": 1.31
+  },
+  "Panama": {
+    "campeon": 0.26,
+    "final": 0.74,
+    "semifinales": 2.22
+  }
+}

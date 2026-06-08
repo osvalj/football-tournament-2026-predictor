@@ -1,0 +1,626 @@
+{
+  "A": {
+    "equipos": [
+      "Mexico",
+      "Korea Republic",
+      "South Africa",
+      "Czechia"
+    ],
+    "partidos": [
+      {
+        "home": "Mexico",
+        "away": "Korea Republic",
+        "home_win": 30.9,
+        "draw": 45.2,
+        "away_win": 23.9
+      },
+      {
+        "home": "Mexico",
+        "away": "South Africa",
+        "home_win": 54.6,
+        "draw": 33.1,
+        "away_win": 12.3
+      },
+      {
+        "home": "Mexico",
+        "away": "Czechia",
+        "home_win": 41.7,
+        "draw": 39.5,
+        "away_win": 18.8
+      },
+      {
+        "home": "Korea Republic",
+        "away": "South Africa",
+        "home_win": 47.4,
+        "draw": 36.6,
+        "away_win": 16.0
+      },
+      {
+        "home": "Korea Republic",
+        "away": "Czechia",
+        "home_win": 42.8,
+        "draw": 38.5,
+        "away_win": 18.7
+      },
+      {
+        "home": "South Africa",
+        "away": "Czechia",
+        "home_win": 19.5,
+        "draw": 38.9,
+        "away_win": 41.6
+      }
+    ]
+  },
+  "B": {
+    "equipos": [
+      "Canada",
+      "Switzerland",
+      "Qatar",
+      "Bosnia and Herzegovina"
+    ],
+    "partidos": [
+      {
+        "home": "Canada",
+        "away": "Switzerland",
+        "home_win": 19.3,
+        "draw": 39.0,
+        "away_win": 41.7
+      },
+      {
+        "home": "Canada",
+        "away": "Qatar",
+        "home_win": 23.4,
+        "draw": 39.3,
+        "away_win": 37.3
+      },
+      {
+        "home": "Canada",
+        "away": "Bosnia and Herzegovina",
+        "home_win": 42.8,
+        "draw": 39.1,
+        "away_win": 18.1
+      },
+      {
+        "home": "Switzerland",
+        "away": "Qatar",
+        "home_win": 47.1,
+        "draw": 36.8,
+        "away_win": 16.1
+      },
+      {
+        "home": "Switzerland",
+        "away": "Bosnia and Herzegovina",
+        "home_win": 54.7,
+        "draw": 33.0,
+        "away_win": 12.3
+      },
+      {
+        "home": "Qatar",
+        "away": "Bosnia and Herzegovina",
+        "home_win": 53.3,
+        "draw": 33.4,
+        "away_win": 13.3
+      }
+    ]
+  },
+  "C": {
+    "equipos": [
+      "Brazil",
+      "Morocco",
+      "Scotland",
+      "Haiti"
+    ],
+    "partidos": [
+      {
+        "home": "Brazil",
+        "away": "Morocco",
+        "home_win": 44.7,
+        "draw": 37.9,
+        "away_win": 17.4
+      },
+      {
+        "home": "Brazil",
+        "away": "Scotland",
+        "home_win": 50.5,
+        "draw": 35.0,
+        "away_win": 14.5
+      },
+      {
+        "home": "Brazil",
+        "away": "Haiti",
+        "home_win": 60.1,
+        "draw": 29.1,
+        "away_win": 10.7
+      },
+      {
+        "home": "Morocco",
+        "away": "Scotland",
+        "home_win": 47.2,
+        "draw": 36.7,
+        "away_win": 16.1
+      },
+      {
+        "home": "Morocco",
+        "away": "Haiti",
+        "home_win": 59.6,
+        "draw": 29.5,
+        "away_win": 10.8
+      },
+      {
+        "home": "Scotland",
+        "away": "Haiti",
+        "home_win": 54.8,
+        "draw": 32.9,
+        "away_win": 12.3
+      }
+    ]
+  },
+  "D": {
+    "equipos": [
+      "USA",
+      "Australia",
+      "Paraguay",
+      "Turkey"
+    ],
+    "partidos": [
+      {
+        "home": "USA",
+        "away": "Australia",
+        "home_win": 31.1,
+        "draw": 45.2,
+        "away_win": 23.7
+      },
+      {
+        "home": "USA",
+        "away": "Paraguay",
+        "home_win": 53.4,
+        "draw": 33.5,
+        "away_win": 13.1
+      },
+      {
+        "home": "USA",
+        "away": "Turkey",
+        "home_win": 41.1,
+        "draw": 38.3,
+        "away_win": 20.6
+      },
+      {
+        "home": "Australia",
+        "away": "Paraguay",
+        "home_win": 31.9,
+        "draw": 44.9,
+        "away_win": 23.2
+      },
+      {
+        "home": "Australia",
+        "away": "Turkey",
+        "home_win": 31.0,
+        "draw": 44.8,
+        "away_win": 24.2
+      },
+      {
+        "home": "Paraguay",
+        "away": "Turkey",
+        "home_win": 19.4,
+        "draw": 39.2,
+        "away_win": 41.4
+      }
+    ]
+  },
+  "E": {
+    "equipos": [
+      "Germany",
+      "Ecuador",
+      "C\u00f4te d'Ivoire",
+      "Cura\u00e7ao"
+    ],
+    "partidos": [
+      {
+        "home": "Germany",
+        "away": "Ecuador",
+        "home_win": 45.9,
+        "draw": 37.3,
+        "away_win": 16.7
+      },
+      {
+        "home": "Germany",
+        "away": "C\u00f4te d'Ivoire",
+        "home_win": 46.7,
+        "draw": 37.0,
+        "away_win": 16.3
+      },
+      {
+        "home": "Germany",
+        "away": "Cura\u00e7ao",
+        "home_win": 70.9,
+        "draw": 21.7,
+        "away_win": 7.4
+      },
+      {
+        "home": "Ecuador",
+        "away": "C\u00f4te d'Ivoire",
+        "home_win": 38.6,
+        "draw": 39.6,
+        "away_win": 21.8
+      },
+      {
+        "home": "Ecuador",
+        "away": "Cura\u00e7ao",
+        "home_win": 70.7,
+        "draw": 21.7,
+        "away_win": 7.6
+      },
+      {
+        "home": "C\u00f4te d'Ivoire",
+        "away": "Cura\u00e7ao",
+        "home_win": 70.4,
+        "draw": 22.0,
+        "away_win": 7.6
+      }
+    ]
+  },
+  "F": {
+    "equipos": [
+      "Netherlands",
+      "Japan",
+      "Tunisia",
+      "Sweden"
+    ],
+    "partidos": [
+      {
+        "home": "Netherlands",
+        "away": "Japan",
+        "home_win": 31.0,
+        "draw": 45.2,
+        "away_win": 23.8
+      },
+      {
+        "home": "Netherlands",
+        "away": "Tunisia",
+        "home_win": 47.1,
+        "draw": 36.8,
+        "away_win": 16.1
+      },
+      {
+        "home": "Netherlands",
+        "away": "Sweden",
+        "home_win": 41.6,
+        "draw": 39.1,
+        "away_win": 19.4
+      },
+      {
+        "home": "Japan",
+        "away": "Tunisia",
+        "home_win": 46.6,
+        "draw": 37.1,
+        "away_win": 16.4
+      },
+      {
+        "home": "Japan",
+        "away": "Sweden",
+        "home_win": 32.5,
+        "draw": 44.4,
+        "away_win": 23.0
+      },
+      {
+        "home": "Tunisia",
+        "away": "Sweden",
+        "home_win": 20.6,
+        "draw": 39.5,
+        "away_win": 39.9
+      }
+    ]
+  },
+  "G": {
+    "equipos": [
+      "Belgium",
+      "IR Iran",
+      "Egypt",
+      "New Zealand"
+    ],
+    "partidos": [
+      {
+        "home": "Belgium",
+        "away": "IR Iran",
+        "home_win": 51.1,
+        "draw": 34.6,
+        "away_win": 14.3
+      },
+      {
+        "home": "Belgium",
+        "away": "Egypt",
+        "home_win": 50.4,
+        "draw": 35.0,
+        "away_win": 14.5
+      },
+      {
+        "home": "Belgium",
+        "away": "New Zealand",
+        "home_win": 69.8,
+        "draw": 22.3,
+        "away_win": 7.9
+      },
+      {
+        "home": "IR Iran",
+        "away": "Egypt",
+        "home_win": 30.9,
+        "draw": 45.1,
+        "away_win": 24.0
+      },
+      {
+        "home": "IR Iran",
+        "away": "New Zealand",
+        "home_win": 54.5,
+        "draw": 32.8,
+        "away_win": 12.7
+      },
+      {
+        "home": "Egypt",
+        "away": "New Zealand",
+        "home_win": 57.5,
+        "draw": 31.0,
+        "away_win": 11.5
+      }
+    ]
+  },
+  "H": {
+    "equipos": [
+      "Spain",
+      "Saudi Arabia",
+      "Uruguay",
+      "Cape Verde"
+    ],
+    "partidos": [
+      {
+        "home": "Spain",
+        "away": "Saudi Arabia",
+        "home_win": 55.4,
+        "draw": 32.5,
+        "away_win": 12.1
+      },
+      {
+        "home": "Spain",
+        "away": "Uruguay",
+        "home_win": 45.2,
+        "draw": 37.5,
+        "away_win": 17.3
+      },
+      {
+        "home": "Spain",
+        "away": "Cape Verde",
+        "home_win": 71.6,
+        "draw": 21.2,
+        "away_win": 7.2
+      },
+      {
+        "home": "Saudi Arabia",
+        "away": "Uruguay",
+        "home_win": 18.7,
+        "draw": 38.8,
+        "away_win": 42.6
+      },
+      {
+        "home": "Saudi Arabia",
+        "away": "Cape Verde",
+        "home_win": 54.6,
+        "draw": 33.0,
+        "away_win": 12.3
+      },
+      {
+        "home": "Uruguay",
+        "away": "Cape Verde",
+        "home_win": 69.9,
+        "draw": 22.4,
+        "away_win": 7.8
+      }
+    ]
+  },
+  "I": {
+    "equipos": [
+      "France",
+      "Senegal",
+      "Iraq",
+      "Norway"
+    ],
+    "partidos": [
+      {
+        "home": "France",
+        "away": "Senegal",
+        "home_win": 50.1,
+        "draw": 35.1,
+        "away_win": 14.8
+      },
+      {
+        "home": "France",
+        "away": "Iraq",
+        "home_win": 56.1,
+        "draw": 31.9,
+        "away_win": 12.0
+      },
+      {
+        "home": "France",
+        "away": "Norway",
+        "home_win": 55.3,
+        "draw": 32.5,
+        "away_win": 12.2
+      },
+      {
+        "home": "Senegal",
+        "away": "Iraq",
+        "home_win": 50.6,
+        "draw": 34.9,
+        "away_win": 14.4
+      },
+      {
+        "home": "Senegal",
+        "away": "Norway",
+        "home_win": 31.7,
+        "draw": 44.6,
+        "away_win": 23.8
+      },
+      {
+        "home": "Iraq",
+        "away": "Norway",
+        "home_win": 13.1,
+        "draw": 31.3,
+        "away_win": 55.6
+      }
+    ]
+  },
+  "J": {
+    "equipos": [
+      "Argentina",
+      "Algeria",
+      "Austria",
+      "Jordan"
+    ],
+    "partidos": [
+      {
+        "home": "Argentina",
+        "away": "Algeria",
+        "home_win": 55.5,
+        "draw": 32.3,
+        "away_win": 12.2
+      },
+      {
+        "home": "Argentina",
+        "away": "Austria",
+        "home_win": 48.5,
+        "draw": 35.8,
+        "away_win": 15.8
+      },
+      {
+        "home": "Argentina",
+        "away": "Jordan",
+        "home_win": 57.4,
+        "draw": 31.1,
+        "away_win": 11.5
+      },
+      {
+        "home": "Algeria",
+        "away": "Austria",
+        "home_win": 22.8,
+        "draw": 39.5,
+        "away_win": 37.8
+      },
+      {
+        "home": "Algeria",
+        "away": "Jordan",
+        "home_win": 44.6,
+        "draw": 38.2,
+        "away_win": 17.2
+      },
+      {
+        "home": "Austria",
+        "away": "Jordan",
+        "home_win": 54.6,
+        "draw": 33.1,
+        "away_win": 12.3
+      }
+    ]
+  },
+  "K": {
+    "equipos": [
+      "Portugal",
+      "Congo DR",
+      "Uzbekistan",
+      "Colombia"
+    ],
+    "partidos": [
+      {
+        "home": "Portugal",
+        "away": "Congo DR",
+        "home_win": 54.7,
+        "draw": 33.0,
+        "away_win": 12.4
+      },
+      {
+        "home": "Portugal",
+        "away": "Uzbekistan",
+        "home_win": 54.8,
+        "draw": 32.9,
+        "away_win": 12.3
+      },
+      {
+        "home": "Portugal",
+        "away": "Colombia",
+        "home_win": 44.1,
+        "draw": 38.0,
+        "away_win": 17.8
+      },
+      {
+        "home": "Congo DR",
+        "away": "Uzbekistan",
+        "home_win": 42.0,
+        "draw": 38.5,
+        "away_win": 19.5
+      },
+      {
+        "home": "Congo DR",
+        "away": "Colombia",
+        "home_win": 16.1,
+        "draw": 37.3,
+        "away_win": 46.6
+      },
+      {
+        "home": "Uzbekistan",
+        "away": "Colombia",
+        "home_win": 16.1,
+        "draw": 37.2,
+        "away_win": 46.7
+      }
+    ]
+  },
+  "L": {
+    "equipos": [
+      "England",
+      "Croatia",
+      "Ghana",
+      "Panama"
+    ],
+    "partidos": [
+      {
+        "home": "England",
+        "away": "Croatia",
+        "home_win": 43.0,
+        "draw": 38.1,
+        "away_win": 18.9
+      },
+      {
+        "home": "England",
+        "away": "Ghana",
+        "home_win": 57.2,
+        "draw": 31.2,
+        "away_win": 11.6
+      },
+      {
+        "home": "England",
+        "away": "Panama",
+        "home_win": 55.8,
+        "draw": 32.2,
+        "away_win": 12.0
+      },
+      {
+        "home": "Croatia",
+        "away": "Ghana",
+        "home_win": 54.5,
+        "draw": 33.3,
+        "away_win": 12.3
+      },
+      {
+        "home": "Croatia",
+        "away": "Panama",
+        "home_win": 50.4,
+        "draw": 35.1,
+        "away_win": 14.5
+      },
+      {
+        "home": "Ghana",
+        "away": "Panama",
+        "home_win": 23.1,
+        "draw": 39.4,
+        "away_win": 37.5
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+# Data — too large for git
+data/
+
+# Models — tracked separately if needed
+models/*.pkl
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.ipynb_checkpoints/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.jupyter/
+dataset_EA_playerrating/
+dataset_international_football/
+dataset_ranking_FIFA/
+dataset_transfermarkt/
+*.zip
