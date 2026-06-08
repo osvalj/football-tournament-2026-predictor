@@ -64,14 +64,18 @@ h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
     padding-bottom: 6px; margin-bottom: 20px; color: #f1f5f9;
 }
 .stTabs [data-baseweb="tab-list"] {
-    background-color: #111827; border-radius: 8px; padding: 4px; gap: 4px;
+    background-color: #111827; border-radius: 10px;
+    padding: 6px 8px; gap: 8px;
 }
 .stTabs [data-baseweb="tab"] {
     background-color: transparent; color: #6b7280;
     font-family: 'DM Sans', sans-serif; font-weight: 500;
+    padding: 10px 20px; font-size: 0.85rem;
+    letter-spacing: 0.03em;
 }
 .stTabs [aria-selected="true"] {
-    background-color: #f59e0b !important; color: #000 !important; border-radius: 6px;
+    background-color: #f59e0b !important; color: #000 !important;
+    border-radius: 6px; font-weight: 600;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -105,6 +109,102 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.divider()
+
+# ── Sidebar — Buscador por país ───────────────────────────────
+with st.sidebar:
+    st.markdown("""
+    <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem;
+                letter-spacing:0.08em; color:#f59e0b; margin-bottom:8px;">
+        🔍 BUSCAR POR PAÍS
+    </div>
+    """, unsafe_allow_html=True)
+
+    todos_equipos_sorted = sorted(champion_data.keys())
+    pais_sel = st.selectbox(
+        "Selecciona tu selección",
+        options=["— Ver todos —"] + todos_equipos_sorted,
+        index=0
+    )
+
+    if pais_sel != "— Ver todos —":
+        probs = champion_data[pais_sel]
+        grupo_pais = next(
+            (g for g, data in match_data.items() if pais_sel in data["equipos"]), None
+        )
+        ranking_pos = sorted(
+            champion_data.items(), key=lambda x: x[1]["campeon"], reverse=True
+        )
+        posicion = next((i+1 for i, (t, _) in enumerate(ranking_pos) if t == pais_sel), None)
+
+        st.markdown(f"""
+        <div style="background:#111827; border:1px solid #1f2937;
+                    border-radius:10px; padding:14px; margin-top:12px;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem;
+                        color:#f1f5f9; margin-bottom:10px;">{pais_sel}</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="color:#6b7280; font-size:0.85rem;">🏆 Campeón</span>
+                    <span style="font-family:'Bebas Neue',sans-serif;
+                                 color:#f59e0b; font-size:1rem;">{probs['campeon']}%</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="color:#6b7280; font-size:0.85rem;">🥈 Final</span>
+                    <span style="font-family:'Bebas Neue',sans-serif;
+                                 color:#f1f5f9; font-size:1rem;">{probs['final']}%</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="color:#6b7280; font-size:0.85rem;">🥉 Semifinales</span>
+                    <span style="font-family:'Bebas Neue',sans-serif;
+                                 color:#f1f5f9; font-size:1rem;">{probs['semifinales']}%</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="color:#6b7280; font-size:0.85rem;">📊 Ranking favoritos</span>
+                    <span style="font-family:'Bebas Neue',sans-serif;
+                                 color:#f1f5f9; font-size:1rem;">#{posicion}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="color:#6b7280; font-size:0.85rem;">📋 Grupo</span>
+                    <span style="font-family:'Bebas Neue',sans-serif;
+                                 color:#f1f5f9; font-size:1rem;">{grupo_pais}</span>
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Partidos del equipo seleccionado
+        st.markdown("""
+        <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem;
+                    color:#f59e0b; margin-top:16px; margin-bottom:8px;">
+            PARTIDOS DE GRUPO
+        </div>
+        """, unsafe_allow_html=True)
+
+        if grupo_pais:
+            partidos_pais = [
+                p for p in match_data[grupo_pais]["partidos"]
+                if p["home"] == pais_sel or p["away"] == pais_sel
+            ]
+            for p in partidos_pais:
+                es_local = p["home"] == pais_sel
+                rival    = p["away"] if es_local else p["home"]
+                p_equipo = p["home_win"] if es_local else p["away_win"]
+                p_draw   = p["draw"]
+                p_rival  = p["away_win"] if es_local else p["home_win"]
+                color    = "#22c55e" if p_equipo > p_rival and p_equipo > p_draw else                            "#f59e0b" if p_draw > p_equipo and p_draw > p_rival else "#ef4444"
+                resultado = "Favorito" if p_equipo > p_rival and p_equipo > p_draw else                             "Empate probable" if p_draw > p_equipo and p_draw > p_rival else                             "Desfavorable"
+                st.markdown(f"""
+                <div style="background:#111827; border:1px solid #1f2937;
+                            border-radius:8px; padding:10px 12px; margin-bottom:6px;">
+                    <div style="font-size:0.8rem; color:#6b7280; margin-bottom:4px;">
+                        vs {rival}
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-family:'Bebas Neue',sans-serif;
+                                     font-size:1.1rem; color:{color};">{p_equipo}%</span>
+                        <span style="font-size:0.75rem; color:{color};">{resultado}</span>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
 
 # ── Tabs principales ──────────────────────────────────────────
 tab1, tab2, tab3, tab4 = st.tabs([
@@ -153,28 +253,45 @@ with tab1:
     fig = go.Figure()
     fig.add_trace(go.Bar(
         y=teams[::-1], x=semis[::-1], name="Semifinales", orientation="h",
-        marker_color="rgba(59, 130, 246, 0.27)", marker_line_width=0,
+        marker_color="rgba(147, 197, 253, 0.5)", marker_line_width=0,
+        text=[f"{v}%" for v in semis[::-1]],
+        textposition="inside",
+        textfont=dict(color="#ffffff", size=10),
+        insidetextanchor="middle",
     ))
     fig.add_trace(go.Bar(
         y=teams[::-1], x=finals[::-1], name="Final", orientation="h",
-        marker_color="rgba(245, 158, 11, 0.53)", marker_line_width=0,
+        marker_color="rgba(245, 158, 11, 0.6)", marker_line_width=0,
+        text=[f"{v}%" for v in finals[::-1]],
+        textposition="inside",
+        textfont=dict(color="#ffffff", size=10),
+        insidetextanchor="middle",
     ))
     fig.add_trace(go.Bar(
         y=teams[::-1], x=camps[::-1], name="Campeón", orientation="h",
         marker_color="#f59e0b", marker_line_width=0,
-        text=[f"{v}%" for v in camps[::-1]], textposition="outside",
-        textfont=dict(color="#f1f5f9", size=11),
+        text=[f"{v}%" for v in camps[::-1]],
+        textposition="inside",
+        textfont=dict(color="#000000", size=11, family="DM Sans"),
+        insidetextanchor="middle",
     ))
     fig.update_layout(
         barmode="overlay",
         plot_bgcolor="#111827", paper_bgcolor="#0a0e1a",
         font=dict(family="DM Sans", color="#f1f5f9"),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02,
-                    xanchor="right", x=1, font=dict(size=11), bgcolor="rgba(0,0,0,0)"),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom", y=1.02,
+            xanchor="center", x=0.5,
+            font=dict(size=12, color="#f1f5f9"),
+            bgcolor="rgba(17,24,39,0.8)",
+            bordercolor="#1f2937",
+            borderwidth=1,
+        ),
         xaxis=dict(title="Probabilidad (%)", gridcolor="#1f2937", tickfont=dict(size=11)),
         yaxis=dict(tickfont=dict(size=12)),
-        height=520,
-        margin=dict(l=10, r=60, t=40, b=40),
+        height=540,
+        margin=dict(l=10, r=20, t=60, b=40),
     )
     st.plotly_chart(fig, use_container_width=True)
 
