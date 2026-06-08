@@ -95,6 +95,35 @@ def load_data():
 
 champion_data, match_data, group_data = load_data()
 
+# ── Banderas por país ─────────────────────────────────────────
+FLAGS = {
+    "France": "🇫🇷", "Argentina": "🇦🇷", "Brazil": "🇧🇷",
+    "England": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Belgium": "🇧🇪", "Spain": "🇪🇸",
+    "Portugal": "🇵🇹", "Germany": "🇩🇪", "Croatia": "🇭🇷",
+    "Morocco": "🇲🇦", "Netherlands": "🇳🇱", "Uruguay": "🇺🇾",
+    "Switzerland": "🇨🇭", "Colombia": "🇨🇴", "Japan": "🇯🇵",
+    "Mexico": "🇲🇽", "Korea Republic": "🇰🇷", "South Africa": "🇿🇦",
+    "Czechia": "🇨🇿", "Canada": "🇨🇦", "Qatar": "🇶🇦",
+    "Bosnia and Herzegovina": "🇧🇦", "Brazil": "🇧🇷",
+    "Scotland": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "Haiti": "🇭🇹", "USA": "🇺🇸",
+    "Australia": "🇦🇺", "Paraguay": "🇵🇾", "Turkey": "🇹🇷",
+    "Ecuador": "🇪🇨", "Côte d'Ivoire": "🇨🇮", "Curaçao": "🇨🇼",
+    "Japan": "🇯🇵", "Tunisia": "🇹🇳", "Sweden": "🇸🇪",
+    "Belgium": "🇧🇪", "IR Iran": "🇮🇷", "Egypt": "🇪🇬",
+    "New Zealand": "🇳🇿", "Saudi Arabia": "🇸🇦", "Cape Verde": "🇨🇻",
+    "Senegal": "🇸🇳", "Iraq": "🇮🇶", "Norway": "🇳🇴",
+    "Algeria": "🇩🇿", "Austria": "🇦🇹", "Jordan": "🇯🇴",
+    "Portugal": "🇵🇹", "Congo DR": "🇨🇩", "Uzbekistan": "🇺🇿",
+    "Ghana": "🇬🇭", "Panama": "🇵🇦",
+}
+
+def flag(team):
+    return FLAGS.get(team, "🏳️")
+
+def flagged(team):
+    return f"{FLAGS.get(team, '🏳️')} {team}"
+
+
 # ── Header ────────────────────────────────────────────────────
 st.markdown("""
 <div style="padding: 10px 0 20px 0;">
@@ -140,7 +169,7 @@ with st.sidebar:
         <div style="background:#111827; border:1px solid #1f2937;
                     border-radius:10px; padding:14px; margin-top:12px;">
             <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem;
-                        color:#f1f5f9; margin-bottom:10px;">{pais_sel}</div>
+                        color:#f1f5f9; margin-bottom:10px;">{flagged(pais_sel)}</div>
             <div style="display:flex; flex-direction:column; gap:8px;">
                 <div style="display:flex; justify-content:space-between;">
                     <span style="color:#6b7280; font-size:0.85rem;">🏆 Campeón</span>
@@ -196,7 +225,7 @@ with st.sidebar:
                 <div style="background:#111827; border:1px solid #1f2937;
                             border-radius:8px; padding:10px 12px; margin-bottom:6px;">
                     <div style="font-size:0.8rem; color:#6b7280; margin-bottom:4px;">
-                        vs {rival}
+                        vs {flag(rival)} {rival}
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-family:'Bebas Neue',sans-serif;
@@ -226,12 +255,13 @@ with tab1:
     for i, col in enumerate([col1, col2, col3]):
         team, probs = sorted_teams[i]
         medal = ["🥇", "🥈", "🥉"][i]
+        team_display = flagged(team)
         with col:
             st.markdown(f"""
             <div class="metric-card">
                 <div style="font-size:1.5rem;">{medal}</div>
                 <div class="metric-value">{probs['campeon']}%</div>
-                <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; margin-top:4px;">{team}</div>
+                <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; margin-top:4px;">{team_display}</div>
                 <div class="metric-label">Probabilidad de ser campeón</div>
                 <div style="margin-top:10px; display:flex; gap:8px; justify-content:center;
                             font-size:0.8rem; color:#6b7280;">
@@ -245,7 +275,7 @@ with tab1:
     st.markdown("<br>", unsafe_allow_html=True)
 
     top15  = sorted_teams[:15]
-    teams  = [t[0] for t in top15]
+    teams  = [flagged(t[0]) for t in top15]
     camps  = [t[1]["campeon"] for t in top15]
     finals = [t[1]["final"] for t in top15]
     semis  = [t[1]["semifinales"] for t in top15]
@@ -292,7 +322,7 @@ with tab1:
             st.plotly_chart(fig, use_container_width=True)
     with st.expander("Ver todos los equipos"):
         df_all = pd.DataFrame([
-            {"Equipo": t, "🏆 Campeón": f"{v['campeon']}%",
+            {"Equipo": flagged(t), "🏆 Campeón": f"{v['campeon']}%",
              "🥈 Final": f"{v['final']}%", "🥉 Semifinales": f"{v['semifinales']}%"}
             for t, v in sorted_teams
         ])
@@ -324,7 +354,7 @@ with tab2:
             <div style="display:flex; justify-content:space-between;
                         align-items:center; margin-bottom:12px;">
                 <div style="text-align:left; flex:1;">
-                    <div style="font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">{home}</div>
+                    <div style="font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">{flag(home)} {home}</div>
                     <div style="font-size:1.6rem; font-family:'Bebas Neue',sans-serif; color:#22c55e;">{p_home}%</div>
                 </div>
                 <div style="text-align:center; flex:0.6;">
@@ -332,7 +362,7 @@ with tab2:
                     <div style="font-size:1.4rem; font-family:'Bebas Neue',sans-serif; color:#f59e0b;">{p_draw}%</div>
                 </div>
                 <div style="text-align:right; flex:1;">
-                    <div style="font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">{away}</div>
+                    <div style="font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">{flag(away)} {away}</div>
                     <div style="font-size:1.6rem; font-family:'Bebas Neue',sans-serif; color:#ef4444;">{p_away}%</div>
                 </div>
             </div>
@@ -369,7 +399,7 @@ with tab3:
                 df_grupo = pd.DataFrame([
                     {
                         "":       "✅" if i < 2 else "❌",
-                        "Equipo": equipo,
+                        "Equipo": flagged(equipo),
                         "Prob.":  f"{pct}%",
                     }
                     for i, (equipo, pct) in enumerate(sorted_eq)
