@@ -250,51 +250,46 @@ with tab1:
     finals = [t[1]["final"] for t in top15]
     semis  = [t[1]["semifinales"] for t in top15]
 
-    fig = go.Figure()
-    fig.add_trace(go.Bar(
-        y=teams[::-1], x=semis[::-1], name="Semifinales", orientation="h",
-        marker_color="rgba(147, 197, 253, 0.5)", marker_line_width=0,
-        text=[f"{v}%" for v in semis[::-1]],
-        textposition="inside",
-        textfont=dict(color="#ffffff", size=10),
-        insidetextanchor="middle",
-    ))
-    fig.add_trace(go.Bar(
-        y=teams[::-1], x=finals[::-1], name="Final", orientation="h",
-        marker_color="rgba(245, 158, 11, 0.6)", marker_line_width=0,
-        text=[f"{v}%" for v in finals[::-1]],
-        textposition="inside",
-        textfont=dict(color="#ffffff", size=10),
-        insidetextanchor="middle",
-    ))
-    fig.add_trace(go.Bar(
-        y=teams[::-1], x=camps[::-1], name="Campeón", orientation="h",
-        marker_color="#f59e0b", marker_line_width=0,
-        text=[f"{v}%" for v in camps[::-1]],
-        textposition="inside",
-        textfont=dict(color="#000000", size=11, family="DM Sans"),
-        insidetextanchor="middle",
-    ))
-    fig.update_layout(
-        barmode="overlay",
-        plot_bgcolor="#111827", paper_bgcolor="#0a0e1a",
-        font=dict(family="DM Sans", color="#f1f5f9"),
-        legend=dict(
-            orientation="h",
-            yanchor="bottom", y=1.02,
-            xanchor="center", x=0.5,
-            font=dict(size=12, color="#f1f5f9"),
-            bgcolor="rgba(17,24,39,0.8)",
-            bordercolor="#1f2937",
-            borderwidth=1,
-        ),
-        xaxis=dict(title="Probabilidad (%)", gridcolor="#1f2937", tickfont=dict(size=11)),
-        yaxis=dict(tickfont=dict(size=12)),
-        height=540,
-        margin=dict(l=10, r=20, t=60, b=40),
-    )
-    st.plotly_chart(fig, use_container_width=True)
+    # Tres gráficos separados — uno por ronda
+    col_g1, col_g2, col_g3 = st.columns(3)
 
+    graficos = [
+        ("🏆 Campeón", camps, "#f59e0b", "#000000"),
+        ("🥈 Final", finals, "rgba(245,158,11,0.55)", "#ffffff"),
+        ("🥉 Semifinales", semis, "rgba(147,197,253,0.7)", "#000000"),
+    ]
+
+    for col, (titulo, valores, color_barra, color_texto) in zip([col_g1, col_g2, col_g3], graficos):
+        with col:
+            st.markdown(f"<div style='text-align:center; font-family:Bebas Neue,sans-serif; "
+                        f"font-size:1.1rem; color:#f1f5f9; margin-bottom:8px;'>{titulo}</div>",
+                        unsafe_allow_html=True)
+            fig = go.Figure(go.Bar(
+                y=teams[::-1],
+                x=valores[::-1],
+                orientation="h",
+                marker_color=color_barra,
+                marker_line_width=0,
+                text=[f"{v}%" for v in valores[::-1]],
+                textposition="inside",
+                textfont=dict(color=color_texto, size=10),
+                insidetextanchor="middle",
+            ))
+            fig.update_layout(
+                plot_bgcolor="#111827",
+                paper_bgcolor="#111827",
+                font=dict(family="DM Sans", color="#f1f5f9"),
+                xaxis=dict(
+                    gridcolor="#1f2937",
+                    tickfont=dict(size=9),
+                    title="",
+                ),
+                yaxis=dict(tickfont=dict(size=10)),
+                height=460,
+                margin=dict(l=5, r=10, t=10, b=30),
+                showlegend=False,
+            )
+            st.plotly_chart(fig, use_container_width=True)
     with st.expander("Ver todos los equipos"):
         df_all = pd.DataFrame([
             {"Equipo": t, "🏆 Campeón": f"{v['campeon']}%",
