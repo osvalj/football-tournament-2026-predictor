@@ -107,10 +107,11 @@ st.markdown("""
 st.divider()
 
 # ── Tabs principales ──────────────────────────────────────────
-tab1, tab2, tab3 = st.tabs([
+tab1, tab2, tab3, tab4 = st.tabs([
     "🏆  PROBABILIDADES MUNDIAL",
     "⚽  PARTIDOS POR GRUPO",
-    "📊  CLASIFICACIÓN POR GRUPO"
+    "📊  CLASIFICACIÓN POR GRUPO",
+    "🧠  SOBRE EL PROYECTO"
 ])
 
 # ════════════════════════════════════════════════════════════════
@@ -263,6 +264,167 @@ with tab3:
                 ])
                 st.dataframe(df_grupo, use_container_width=True, hide_index=True, height=178)
         st.markdown("<br>", unsafe_allow_html=True)
+
+
+# ════════════════════════════════════════════════════════════════
+# TAB 4 — Sobre el proyecto
+# ════════════════════════════════════════════════════════════════
+with tab4:
+    st.markdown('<div class="section-title">SOBRE EL PROYECTO</div>', unsafe_allow_html=True)
+
+    col_a, col_b = st.columns([3, 2])
+
+    with col_a:
+        st.markdown("""
+### ¿Qué es esto?
+
+Este dashboard muestra las predicciones de un modelo de **inteligencia artificial** entrenado para predecir resultados de partidos de fútbol internacional. El modelo analiza datos históricos de más de 10.000 partidos y calcula la probabilidad de que gane el equipo local, el visitante, o que el partido termine en empate.
+
+Con esas probabilidades, simulamos el torneo completo **100.000 veces** para estimar qué equipo tiene más posibilidades de ser campeón.
+
+---
+
+### ¿Cómo funciona? La analogía del meteorólogo
+
+Imagina un meteorólogo que predice el tiempo. No dice "mañana lloverá" con certeza absoluta — dice "hay un 70% de probabilidad de lluvia". Lo sabe porque ha estudiado miles de días anteriores con condiciones similares.
+
+Nuestro modelo hace exactamente lo mismo con el fútbol:
+
+- Estudia miles de partidos históricos
+- Identifica patrones: ¿los equipos mejor rankeados ganan más? ¿La forma reciente importa? ¿Los equipos con mejores jugadores tienen ventaja?
+- Con esos patrones, calcula probabilidades para partidos nuevos
+
+El modelo no adivina — **aprende de la historia**.
+
+---
+
+### ¿Qué es el Random Forest?
+
+El algoritmo que usamos se llama **Random Forest** (Bosque Aleatorio). Para entenderlo, primero imagina un árbol de decisión:
+
+> *"¿El equipo local está en el top 10 del ranking FIFA?"*
+> - Sí → *"¿Ha ganado 4 de sus últimos 5 partidos?"*
+>   - Sí → **Predice victoria local**
+>   - No → **Predice empate**
+> - No → *"¿El visitante tiene ventaja de más de 200 puntos FIFA?"*
+>   - Sí → **Predice victoria visitante**
+
+Un solo árbol es como pedir opinión a una sola persona. El Random Forest **consulta a 649 árboles diferentes** — cada uno entrenado con datos ligeramente distintos — y toma la decisión por mayoría. Como pedir opinión a 649 expertos y quedarte con la respuesta más votada.
+
+---
+
+### ¿Qué información usa el modelo?
+
+El modelo analiza **26 variables** por partido:
+
+| Variable | Qué mide |
+|----------|----------|
+| Ranking FIFA | Posición oficial de cada selección en el mundo |
+| Puntos FIFA | Puntuación acumulada en el ranking |
+| Ratings EA FC 26 | Calidad de los jugadores (videojuego como proxy) |
+| Forma reciente | Resultados de los últimos 5 partidos competitivos |
+| Historial directo | Quién gana históricamente cuando se enfrentan |
+| Promedio de goles | Goles marcados y recibidos por partido |
+| Importancia del torneo | No es lo mismo un amistoso que una final |
+| Campo neutral | Si ningún equipo juega en casa |
+
+---
+
+### ¿Qué es la simulación Monte Carlo?
+
+Una vez que el modelo da probabilidades para cada partido, necesitamos simular el torneo completo. Aquí entra **Monte Carlo**.
+
+Imagina que lanzas un dado trucado: la cara 1 sale el 52% de las veces (Francia gana), la cara 2 el 24% (empate), la cara 3 el 24% (Argentina gana). Lanzas el dado para cada partido y avanza quien gana.
+
+Repetimos esto **100.000 veces** con el torneo completo. Al final contamos: *¿cuántas veces ganó Francia?* Si ganó en 10.700 de las 100.000 simulaciones, su probabilidad de ser campeón es del **10.7%**.
+
+Esto captura algo importante: **incluso el favorito puede perder**. Un equipo con 60% de probabilidad de ganar cada partido todavía tiene un 40% de perder. En 6 partidos eliminatorios, el azar acumula. Por eso ningún equipo supera el 11% — el torneo es genuinamente impredecible.
+
+---
+
+### ¿Qué tan bueno es el modelo?
+
+El modelo fue evaluado en **502 partidos reales** jugados entre junio de 2025 y 2026 — partidos que el modelo nunca vio durante el entrenamiento.
+
+| Métrica | Resultado |
+|---------|-----------|
+| Accuracy | **65.1%** — acierta 2 de cada 3 partidos |
+| F1 macro | **56.1%** — rendimiento equilibrado entre las 3 clases |
+
+Para contexto: predecir siempre "gana el local" daría ~47% de accuracy. Predecir al azar daría ~33%. Nuestro modelo supera ambas referencias con claridad.
+
+La clase más difícil de predecir son los **empates** — con solo un 22% de F1. El empate es el resultado más aleatorio del fútbol y el más difícil de capturar con datos estructurales. Esto es consistente con la literatura académica: ningún modelo público supera ese techo con datos abiertos.
+
+---
+
+### ¿Cuáles son las limitaciones?
+
+Este es un proyecto de portfolio con datos públicos. Sus predicciones tienen límites claros:
+
+- **No conoce las alineaciones** del día del partido — si Mbappé está lesionado, el modelo no lo sabe
+- **No incorpora contexto táctico** ni análisis de juego real
+- **Los ratings de EA FC** son un proxy imperfecto de la calidad real de los jugadores
+- **El bracket de la simulación** es una simplificación del cuadro oficial de la FIFA
+
+Las probabilidades son estimaciones estadísticas basadas en patrones históricos. **No son consejos de apuestas.**
+        """)
+
+    with col_b:
+        st.markdown("""
+### Datos utilizados
+
+**Resultados históricos**
+49.287 partidos internacionales desde 1872
+
+**Ranking FIFA**
+67.472 registros de ranking desde 1992
+
+**EA FC 26 Player Ratings**
+16.228 jugadores con valoraciones de habilidad
+
+**Transfermarkt**
+47.689 jugadores y datos de selecciones nacionales
+
+---
+
+### Tecnología
+
+- **Python 3.11**
+- **scikit-learn** — modelo y pipeline
+- **pandas / numpy** — datos
+- **XGBoost / LightGBM** — modelos comparados
+- **Streamlit** — este dashboard
+- **Plotly** — visualizaciones
+
+---
+
+### Resultados del modelo
+
+**Modelos evaluados:** 8
+
+**Mejor modelo:** Random Forest
+
+**Hiperparámetros finales:**
+```
+n_estimators = 649
+max_depth = 4
+max_features = 0.5
+bootstrap = False
+class_weight = balanced
+```
+
+**Simulaciones Monte Carlo:** 100.000
+
+---
+
+### Autor
+
+**Osvaldo Hernández**
+Data Scientist
+
+© 2026 · Todos los derechos reservados
+        """)
+
 
 # ── Footer ────────────────────────────────────────────────────
 st.divider()
