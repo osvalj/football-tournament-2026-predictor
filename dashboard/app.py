@@ -139,108 +139,13 @@ st.markdown("""
 
 st.divider()
 
-# ── Sidebar — Buscador por país ───────────────────────────────
-with st.sidebar:
-    st.markdown("""
-    <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem;
-                letter-spacing:0.08em; color:#f59e0b; margin-bottom:8px;">
-        🔍 BUSCAR POR PAÍS
-    </div>
-    """, unsafe_allow_html=True)
-
-    todos_equipos_sorted = sorted(champion_data.keys())
-    pais_sel = st.selectbox(
-        "Selecciona tu selección",
-        options=["— Ver todos —"] + todos_equipos_sorted,
-        index=0
-    )
-
-    if pais_sel != "— Ver todos —":
-        probs = champion_data[pais_sel]
-        grupo_pais = next(
-            (g for g, data in match_data.items() if pais_sel in data["equipos"]), None
-        )
-        ranking_pos = sorted(
-            champion_data.items(), key=lambda x: x[1]["campeon"], reverse=True
-        )
-        posicion = next((i+1 for i, (t, _) in enumerate(ranking_pos) if t == pais_sel), None)
-
-        st.markdown(f"""
-        <div style="background:#111827; border:1px solid #1f2937;
-                    border-radius:10px; padding:14px; margin-top:12px;">
-            <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem;
-                        color:#f1f5f9; margin-bottom:10px;">{flagged(pais_sel)}</div>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-                <div style="display:flex; justify-content:space-between;">
-                    <span style="color:#6b7280; font-size:0.85rem;">🏆 Campeón</span>
-                    <span style="font-family:'Bebas Neue',sans-serif;
-                                 color:#f59e0b; font-size:1rem;">{probs['campeon']}%</span>
-                </div>
-                <div style="display:flex; justify-content:space-between;">
-                    <span style="color:#6b7280; font-size:0.85rem;">🥈 Final</span>
-                    <span style="font-family:'Bebas Neue',sans-serif;
-                                 color:#f1f5f9; font-size:1rem;">{probs['final']}%</span>
-                </div>
-                <div style="display:flex; justify-content:space-between;">
-                    <span style="color:#6b7280; font-size:0.85rem;">🥉 Semifinales</span>
-                    <span style="font-family:'Bebas Neue',sans-serif;
-                                 color:#f1f5f9; font-size:1rem;">{probs['semifinales']}%</span>
-                </div>
-                <div style="display:flex; justify-content:space-between;">
-                    <span style="color:#6b7280; font-size:0.85rem;">📊 Ranking favoritos</span>
-                    <span style="font-family:'Bebas Neue',sans-serif;
-                                 color:#f1f5f9; font-size:1rem;">#{posicion}</span>
-                </div>
-                <div style="display:flex; justify-content:space-between;">
-                    <span style="color:#6b7280; font-size:0.85rem;">📋 Grupo</span>
-                    <span style="font-family:'Bebas Neue',sans-serif;
-                                 color:#f1f5f9; font-size:1rem;">{grupo_pais}</span>
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        # Partidos del equipo seleccionado
-        st.markdown("""
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem;
-                    color:#f59e0b; margin-top:16px; margin-bottom:8px;">
-            PARTIDOS DE GRUPO
-        </div>
-        """, unsafe_allow_html=True)
-
-        if grupo_pais:
-            partidos_pais = [
-                p for p in match_data[grupo_pais]["partidos"]
-                if p["home"] == pais_sel or p["away"] == pais_sel
-            ]
-            for p in partidos_pais:
-                es_local = p["home"] == pais_sel
-                rival    = p["away"] if es_local else p["home"]
-                p_equipo = p["home_win"] if es_local else p["away_win"]
-                p_draw   = p["draw"]
-                p_rival  = p["away_win"] if es_local else p["home_win"]
-                color    = "#22c55e" if p_equipo > p_rival and p_equipo > p_draw else                            "#f59e0b" if p_draw > p_equipo and p_draw > p_rival else "#ef4444"
-                resultado = "Favorito" if p_equipo > p_rival and p_equipo > p_draw else                             "Empate probable" if p_draw > p_equipo and p_draw > p_rival else                             "Desfavorable"
-                st.markdown(f"""
-                <div style="background:#111827; border:1px solid #1f2937;
-                            border-radius:8px; padding:10px 12px; margin-bottom:6px;">
-                    <div style="font-size:0.8rem; color:#6b7280; margin-bottom:4px;">
-                        vs {flag(rival)} {rival}
-                    </div>
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-family:'Bebas Neue',sans-serif;
-                                     font-size:1.1rem; color:{color};">{p_equipo}%</span>
-                        <span style="font-size:0.75rem; color:{color};">{resultado}</span>
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
-
 # ── Tabs principales ──────────────────────────────────────────
-tab1, tab2, tab3, tab4 = st.tabs([
-    "🏆  PROBABILIDADES MUNDIAL",
-    "⚽  PARTIDOS POR GRUPO",
-    "📊  CLASIFICACIÓN POR GRUPO",
-    "🧠  SOBRE EL PROYECTO"
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    "🏆  MUNDIAL",
+    "⚽  PARTIDOS",
+    "📊  GRUPOS",
+    "🔍  MI SELECCIÓN",
+    "🧠  PROYECTO"
 ])
 
 # ════════════════════════════════════════════════════════════════
@@ -412,6 +317,130 @@ with tab3:
 # TAB 4 — Sobre el proyecto
 # ════════════════════════════════════════════════════════════════
 with tab4:
+    st.markdown('<div class="section-title">🔍 MI SELECCIÓN</div>', unsafe_allow_html=True)
+    st.caption("Selecciona tu selección favorita para ver sus probabilidades y partidos")
+
+    todos_equipos_sorted = sorted(champion_data.keys())
+    pais_sel = st.selectbox(
+        "¿De qué país eres?",
+        options=["— Elige tu selección —"] + todos_equipos_sorted,
+        index=0
+    )
+
+    if pais_sel != "— Elige tu selección —":
+        probs = champion_data[pais_sel]
+        grupo_pais = next(
+            (g for g, data in match_data.items() if pais_sel in data["equipos"]), None
+        )
+        ranking_pos = sorted(
+            champion_data.items(), key=lambda x: x[1]["campeon"], reverse=True
+        )
+        posicion = next((i+1 for i, (t, _) in enumerate(ranking_pos) if t == pais_sel), None)
+
+        st.markdown(f"""
+        <div style="background:#111827; border:1px solid #1f2937; border-radius:12px;
+                    padding:20px; margin:16px 0;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem;
+                        color:#f1f5f9; margin-bottom:16px;">{flagged(pais_sel)}</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <div style="background:#0a0e1a; border-radius:8px; padding:14px; text-align:center;">
+                    <div style="color:#6b7280; font-size:0.75rem; text-transform:uppercase;
+                                letter-spacing:0.1em;">🏆 Campeón</div>
+                    <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem;
+                                color:#f59e0b;">{probs['campeon']}%</div>
+                </div>
+                <div style="background:#0a0e1a; border-radius:8px; padding:14px; text-align:center;">
+                    <div style="color:#6b7280; font-size:0.75rem; text-transform:uppercase;
+                                letter-spacing:0.1em;">🥈 Final</div>
+                    <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem;
+                                color:#f1f5f9;">{probs['final']}%</div>
+                </div>
+                <div style="background:#0a0e1a; border-radius:8px; padding:14px; text-align:center;">
+                    <div style="color:#6b7280; font-size:0.75rem; text-transform:uppercase;
+                                letter-spacing:0.1em;">🥉 Semifinales</div>
+                    <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem;
+                                color:#f1f5f9;">{probs['semifinales']}%</div>
+                </div>
+                <div style="background:#0a0e1a; border-radius:8px; padding:14px; text-align:center;">
+                    <div style="color:#6b7280; font-size:0.75rem; text-transform:uppercase;
+                                letter-spacing:0.1em;">📊 Ranking favoritos</div>
+                    <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem;
+                                color:#f1f5f9;">#{posicion}</div>
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown(f"### Grupo {grupo_pais} — Partidos")
+
+        if grupo_pais:
+            partidos_pais = [
+                p for p in match_data[grupo_pais]["partidos"]
+                if p["home"] == pais_sel or p["away"] == pais_sel
+            ]
+            for p in partidos_pais:
+                es_local = p["home"] == pais_sel
+                rival    = p["away"] if es_local else p["home"]
+                p_equipo = p["home_win"] if es_local else p["away_win"]
+                p_draw   = p["draw"]
+                p_rival  = p["away_win"] if es_local else p["home_win"]
+                color    = "#22c55e" if p_equipo > p_rival and p_equipo > p_draw else                            "#f59e0b" if p_draw >= p_equipo and p_draw >= p_rival else "#ef4444"
+                resultado = "Favorito ✅" if p_equipo > p_rival and p_equipo > p_draw else                             "Empate probable 🟡" if p_draw >= p_equipo and p_draw >= p_rival else                             "Desfavorable ❌"
+
+                st.markdown(f"""
+                <div style="background:#111827; border:1px solid #1f2937; border-radius:10px;
+                            padding:16px; margin-bottom:10px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;
+                                margin-bottom:10px;">
+                        <div>
+                            <div style="font-family:'Bebas Neue',sans-serif; font-size:1.1rem;">
+                                {flagged(pais_sel)} vs {flagged(rival)}
+                            </div>
+                            <div style="font-size:0.8rem; color:#6b7280; margin-top:2px;">{resultado}</div>
+                        </div>
+                        <div style="font-family:'Bebas Neue',sans-serif; font-size:1.8rem; color:{color};">
+                            {p_equipo}%
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:3px; height:6px; border-radius:4px; overflow:hidden;">
+                        <div style="width:{p_equipo}%; background:#22c55e; border-radius:4px 0 0 4px;"></div>
+                        <div style="width:{p_draw}%; background:#f59e0b;"></div>
+                        <div style="width:{p_rival}%; background:#ef4444; border-radius:0 4px 4px 0;"></div>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-top:4px;
+                                font-size:0.7rem; color:#6b7280;">
+                        <span>{flagged(pais_sel)} {p_equipo}%</span>
+                        <span>Empate {p_draw}%</span>
+                        <span>{p_rival}% {flagged(rival)}</span>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+
+        # Todos los equipos del grupo
+        st.markdown(f"### Clasificación estimada — Grupo {grupo_pais}")
+        equipos_grupo = group_data[grupo_pais]
+        sorted_grupo = sorted(equipos_grupo.items(), key=lambda x: x[1], reverse=True)
+        df_grupo_pais = pd.DataFrame([
+            {"": "✅" if i < 2 else "❌", "Equipo": flagged(e), "Prob. clasificación": f"{p}%"}
+            for i, (e, p) in enumerate(sorted_grupo)
+        ])
+        st.dataframe(df_grupo_pais, use_container_width=True, hide_index=True)
+
+    else:
+        st.markdown("""
+        <div style="text-align:center; padding:60px 20px; color:#6b7280;">
+            <div style="font-size:3rem; margin-bottom:16px;">⚽</div>
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem;
+                        color:#f1f5f9; margin-bottom:8px;">
+                Selecciona tu país arriba
+            </div>
+            <div style="font-size:0.9rem;">
+                Ver probabilidades, grupo y partidos de tu selección favorita
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+with tab5:
     st.markdown('<div class="section-title">SOBRE EL PROYECTO</div>', unsafe_allow_html=True)
 
     col_a, col_b = st.columns([3, 2])
