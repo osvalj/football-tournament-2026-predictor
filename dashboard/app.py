@@ -490,14 +490,32 @@ El modelo analiza **26 variables** por partido:
 
 | Variable | Qué mide |
 |----------|----------|
-| Ranking FIFA | Posición oficial de cada selección en el mundo |
-| Puntos FIFA | Puntuación acumulada en el ranking |
-| Ratings EA FC 26 | Calidad de los jugadores (videojuego como proxy) |
-| Forma reciente | Resultados de los últimos 5 partidos competitivos |
-| Historial directo | Quién gana históricamente cuando se enfrentan |
-| Promedio de goles | Goles marcados y recibidos por partido |
-| Importancia del torneo | No es lo mismo un amistoso que una final |
-| Campo neutral | Si ningún equipo juega en casa |
+| `neutral` | Si el partido se juega en campo neutral |
+| `tournament_weight` | Importancia del torneo (3=final, 2=clasificatoria, 1=amistoso) |
+| `home_ranking` | Ranking FIFA del equipo local |
+| `away_ranking` | Ranking FIFA del equipo visitante |
+| `ranking_diff` | Diferencia de ranking (local − visitante) |
+| `home_points` | Puntos FIFA del equipo local |
+| `away_points` | Puntos FIFA del equipo visitante |
+| `points_diff` | Diferencia de puntos FIFA (local − visitante) |
+| `home_avg_overall` | Media de valoración EA FC 26 del equipo local (top 23) |
+| `away_avg_overall` | Media de valoración EA FC 26 del equipo visitante (top 23) |
+| `overall_diff` | Diferencia de valoración media EA FC (local − visitante) |
+| `home_top3_overall` | Media de los 3 mejores jugadores EA FC del equipo local |
+| `away_top3_overall` | Media de los 3 mejores jugadores EA FC del equipo visitante |
+| `top3_overall_diff` | Diferencia de los top 3 jugadores (local − visitante) |
+| `home_best_overall` | Valoración del mejor jugador EA FC del equipo local |
+| `away_best_overall` | Valoración del mejor jugador EA FC del equipo visitante |
+| `home_form_w` | Forma ponderada del equipo local (últimos 5 partidos competitivos, pesos [5,4,3,2,1], normalizada [0,1]) |
+| `away_form_w` | Forma ponderada del equipo visitante |
+| `form_w_diff` | Diferencia de forma ponderada (local − visitante) |
+| `h2h_home_rate` | Tasa histórica de victoria local en enfrentamientos directos |
+| `home_goals_scored_avg` | Promedio de goles marcados por el equipo local |
+| `away_goals_scored_avg` | Promedio de goles marcados por el equipo visitante |
+| `goals_scored_diff` | Diferencia de goles marcados (local − visitante) |
+| `home_goals_conceded_avg` | Promedio de goles recibidos por el equipo local |
+| `away_goals_conceded_avg` | Promedio de goles recibidos por el equipo visitante |
+| `goals_conceded_diff` | Diferencia de goles recibidos (local − visitante) |
 
 ---
 
